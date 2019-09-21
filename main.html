@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Etherscan Demo</title>
+        <script src="app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="container-1">
+    <div class="user-name"><h2>Name: </h2> <div id="name"><p> </p></div></div>
+    <div class="user-public-key"><h2>Public key: </h2> <p id="public-key"></p></div>
+    <div class="user-balance"><h2>Balance: </h2> <div id="balance"><p> </p></div></div>
+    <div class="user-transcations"><h2>Transactions</h2> <div id="transcations"></div></div>
+    <button onclick="showName();showPublicKey();showBalance()">Click me</button>
+</div>
+</body>
+</html>

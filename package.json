@@ -1,0 +1,23 @@
+{
+  "name": "fullstackdevifinalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "ethers": "^4.0.37"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratik3098/FullStackdevIFinalProject.git"
+  },
+  "author": "\u0010Pratik, Wilmar, Andres\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[ and Andres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pratik3098/FullStackdevIFinalProject/issues"
+  },
+  "homepage": "https://github.com/pratik3098/FullStackdevIFinalProject#readme"
+}

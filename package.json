@@ -4,7 +4,12 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "ethers": "^4.0.37"
+    "ethers": "^4.0.37",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "hbs": "^4.0.4",
+    "jsdom": "^15.1.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {},
   "scripts": {

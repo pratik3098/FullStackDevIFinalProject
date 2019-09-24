@@ -4,11 +4,11 @@
        <title> Ether Wallet</title>
     </head>
     <body>
-      <form method="post" action="/submit">
+      <form action="/submit" method="POST" >
           <label for="publicKey">Public Key: </label>
-          <input type="text" id="publicKey" placeholder="HASH"><br>
+          <input type="text" name="publicKey" id="publicKey" placeholder="HASH"><br>
           <label for="publicKey">Private Key: </label>
-          <input type="text" id="privateKey" placeholder="HASH"><br>
+          <input type="text" name="privateKey" id="privateKey" placeholder="HASH"><br>
           <input type="submit" value="login">
       </form>
       <div class="container-1">{{data}}</div>

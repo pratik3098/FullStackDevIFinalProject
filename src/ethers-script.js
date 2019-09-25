@@ -1,24 +1,29 @@
 let ethers = require('ethers');
+try{
+  /*let privateKey = "0x0123456789012345678901234567890123456789012345678901234567890123"
+  let provider = ethers.getDefaultProvider('rinkeby')
+  let wallet = new ethers.Wallet(privateKey provider) */
+  let randomWallet = ethers.Wallet.createRandom()
+  console.log(randomWallet)
+ }
+ catch(err){
+   console.log(err)
+ }
 
-console.log(wallet);
-
-console.log(balance);
-
-function showKeys(){
-  //  console.log("Public key: ");
-   // console.log("Private key: "+wallet.signingKey.keyPair.privateKey);
-}
-
-function createWallet(publicKey,privateKey){
-  let key;
-  if(privateKey)
-   key=privateKey
-  else if(publicKey)
-   key=publicKey
+function createWallet(privateKey,provider){
+   try{
+    let privateKey = "0x0123456789012345678901234567890123456789012345678901234567890123"
+    let provider = ethers.getDefaultProvider('rinkeby')
+    let wallet = new ethers.Wallet("blah ", provider)
+   }
+   catch(err){
+     console.log(err)
+   }
   mywallet={
      "publicKey": wallet.signingKey.keyPair.publicKey,
      "privateKey": wallet.signingKey.keyPair.privateKey,
-     "balance": ethers.utils.formatEther(balanceprovider.getBalance(key));
+     "balance": ethers.utils.formatEther(balanceprovider.getBalance(key)),
+     "network": provider,
   }
 }
 

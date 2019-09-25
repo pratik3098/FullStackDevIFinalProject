@@ -28,31 +28,6 @@ app.listen(8080,()=>{
     console.log("Server is running on port: 8080")
 })
 
-function validateKeys(publicKey,privateKey){
-    console.log("0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a")
-   /* if(privateKey.length==42){
-        try{
-             
 
-          
-        }
-        catch(){
-
-        }
-        return true;
-    }
-    else if(publicKey.length==42){
-        try{
-
-        }
-        catch(){
-
-        }
-        return true;
-    }
-    */
-
-    return false;
-}
 
 

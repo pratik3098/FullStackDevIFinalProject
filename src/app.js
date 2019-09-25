@@ -10,14 +10,49 @@ app.use(express.static("../views"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.get('',(req,res)=>{
     //res.sendFile("index.html",{root: __dirname});
-    res.render("index",{data: " "});
-})
-app.post('/submit',(req, res)=>{
-     console.log(JSON.stringify(req.body));
-     res.render('index',{data: "Hello World"})
+    res.render("index",{bool: "hidden"});
 })
 
-app.listen(8080,()=>{
-    console.log("Server is running on port: 8080");
+app.post('/submit',(req, res)=>{
+     console.log(JSON.stringify(req.body))
+     if(validateKeys(req.body.publicKey,req.body.privateKey))
+     res.redirect("/mywallet")
+     else
+     res.render('index',{bool: " "})
+
 })
+app.get('/alert',(req,res)=>{
+    res.render('alert')
+})
+app.listen(8080,()=>{
+    console.log("Server is running on port: 8080")
+})
+
+function validateKeys(publicKey,privateKey){
+    console.log("0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a")
+   /* if(privateKey.length==42){
+        try{
+             
+
+          
+        }
+        catch(){
+
+        }
+        return true;
+    }
+    else if(publicKey.length==42){
+        try{
+
+        }
+        catch(){
+
+        }
+        return true;
+    }
+    */
+
+    return false;
+}
+
 

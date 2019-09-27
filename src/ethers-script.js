@@ -49,7 +49,7 @@ try {
   let etherscanProvider = new ethers.providers.EtherscanProvider('rinkeby',apiToken)
   const balance = ethers.utils.formatEther(await  etherscanProvider.getBalance(wallet.address))
     console.log("Balance 111: " + balance);
- // console.log(wallet)
+    console.log(wallet.signingKey.address)
 }
 catch (err) {
   // console.log("Error Occured")

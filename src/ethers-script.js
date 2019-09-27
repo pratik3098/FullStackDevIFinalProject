@@ -68,4 +68,11 @@ async function test()
   console.log(k);
 }
 
-test();
+//test();
+//if(! cool)
+//console.log('Cool!')
+
+let mnemonic = "radar blur cabbage chef fix engine embark joy scheme fiction master release";
+let mnemonicWallet = ethers.Wallet.fromMnemonic(mnemonic);
+
+console.log(mnemonicWallet)

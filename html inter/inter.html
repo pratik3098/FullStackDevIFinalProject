@@ -17,11 +17,12 @@
                 <div>
                     <div class="container">
                         <h4>Account <span class="info" style="color:black"> <b>ETH</b></span></h4>
-                        <p>Public Key: <span class="info">public key</span></p>
-                        <p>Private Key:<span class="info"><a href="#"> show </a>&nbsp private Key</span></p>
-                        <p>Balance ETH: <span class="info">8.1455</span></p>
-                        <p>Balance USD: <span class="info">$1351</span></p>
-                        <p>Balance BTC: <span class="info">0.33</span></p>
+                        <p>Address: <span class="info public">Address</span></p>
+                        <p>Private Key:<span class="info"><a href="#" class="showprivate"> show </a><span class="private">&nbsp private Key</span></span></p>
+                        <p>Network: <span class="info network">Network</span></p>
+                        <p>Balance ETH: <span class="info balanceEth">8.1455</span></p>
+                        <p>Balance USD: <span class="info balanceUsd">$1351</span></p>
+                        <p>Balance BTC: <span class="info balanceBtc">0.33</span></p>
                         <hr>
 
                     </div>
@@ -30,32 +31,32 @@
                 <div class="col-25">
                     <br>
 
-                    <h3>Send Ether</h3>
+                <!--<h3>Send Ether</h3>
 
 
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="cardname" placeholder="Enter the Address">
+                    <input type="text" id="address" name="cardname" class="address" placeholder="Enter the Address">
                     <label for="amount">Amount:</label>
-                    <input type="number" id="amount" name="amount" placeholder="Enter the ETH amount">
+                    <input type="number" id="amount" name="amount" class="amount" placeholder="Enter the ETH amount">
 
 
 
-                    <input type="submit" value="SEND" class="btn">
+                    <input type="submit" value="SEND" class="btn">-->
+    
+            <h3>Deposit Ether</h3>
 
-                    <h3>Deposit Ether</h3>
-                    
-                    
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="cardname" placeholder="Enter the Address">
-                    <label for="amount">Amount:</label>
-                    <input type="number" id="amount" name="amount" placeholder="Enter the ETH amount">
-                    
-                    
-                    
-                    <input type="submit" value="DEPOSIT" class="btn">
+
+            <!--<label for="address">Address:</label>
+            <input type="text" id="address" name="address" class="address" placeholder="Enter the Address">-->
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" class="amount" placeholder="Enter the ETH amount">
+
+
+
+            <input type="submit" value="DEPOSIT" class="btn">
             </form>
         </div>
-
+<script type="text/javascript" src="inter.js"></script>
 </body>
 
 </html>

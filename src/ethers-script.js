@@ -42,14 +42,14 @@ async function createWallet() {
 let ethers = require('ethers')
 let etherString
 try {
-  let provider = ethers.getDefaultProvider('rinkeby')
+  let provider = ethers.getDefaultProvider(this.providerName)
   let apiToken = "U2ADDD8KDD731FIGBJ4DM4SKNYWA2TKVHW"
-  let privateKey = "43D57D2EEAC30F7F172042747F79830356AFDFAD43D22BEF5C1C1BA5239C9ED0"
+  let privateKey = '0xb96e9ccb774cc33213cbcb2c69d3cdae17b0fe4888a1ccd343cbd1a17fd98b18'
   let wallet = new ethers.Wallet(privateKey, provider)
   let etherscanProvider = new ethers.providers.EtherscanProvider('rinkeby',apiToken)
   const balance = ethers.utils.formatEther(await  etherscanProvider.getBalance(wallet.address))
     console.log("Balance 111: " + balance);
-    console.log(wallet.signingKey.address)
+    console.log(wallet)
 }
 catch (err) {
   // console.log("Error Occured")
@@ -67,12 +67,11 @@ async function test()
   const k = await createWallet();
   console.log(k);
 }
-
+  
 //test();
 //if(! cool)
 //console.log('Cool!')
 
-let mnemonic = "radar blur cabbage chef fix engine embark joy scheme fiction master release";
-let mnemonicWallet = ethers.Wallet.fromMnemonic(mnemonic);
+wallet = ethers.Wallet.fromMnemonic("radar blur cabbage chef fix engine embark joy scheme fiction master release");
 
-console.log(mnemonicWallet)
+//console.log(wallet)

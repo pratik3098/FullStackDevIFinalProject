@@ -154,11 +154,22 @@
     </div>
 
     <div class="container">
-      <label for="uname"><b>public key</b></label>
-      <input type="text" placeholder="Enter your public key" name="uname" required>
-
-      <label for="psw"><b>private key</b></label>
-      <input type="password" placeholder="Enter your private key - it will not be visible" name="psw" required>
+      <label for="privateKey"><b>Private key</b></label>
+      <input type="text" placeholder="Enter your private key" name="privateKey" >
+              <h3> Or </h3>
+      <label for="seed"><b>Seed Phrase</b></label>
+      <input type="password" placeholder="Enter your seed phase" name="seed" >
+      <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Select the network" id="myInput" name="provider" onkeyup="filterFunction()">
+        <a>Homestead</a>
+        <a>rinkeby</a>
+        <a>ropsten</a>
+        <a>kovan</a>
+        <a>goerli</a>
+      </div>
+    </div>
 
       <button type="submit">Access</button>
       <label>
@@ -167,16 +178,7 @@
     </div>
 
 
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-      <div id="myDropdown" class="dropdown-content">
-        <input type="text" placeholder="Select the network" id="myInput" onkeyup="filterFunction()">
-        <a href="#about">TestNet</a>
-        <a href="#base">Metamask</a>
-        <a href="#blog">Other</a>
-
-      </div>
-    </div>
+ 
 
     <script>
 
@@ -208,7 +210,7 @@
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Dont have a public key? <a href="#">Create a private key</a></span>
+      <span class="psw">Dont have a public key? <a action="/submit"method="post">Create a private key</a></span>
     </div>
   </form>
 

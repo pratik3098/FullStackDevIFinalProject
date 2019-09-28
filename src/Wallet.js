@@ -14,7 +14,7 @@ module.exports = class Wallet {
         this.etherscanProvider = new this.ethers.providers.EtherscanProvider(this.providerName, this.apiToken)
 
 
-        if (typeof seed != "undefined" && seed != null) {
+        if (typeof seed != "undefined" && seed != null && seed.length > 0) {
             try {
                 this.createWalletFromSeed(seed)
             }
@@ -38,12 +38,15 @@ module.exports = class Wallet {
             }
         }
     }
-    createWallet() {
+    get address(){
+        return this.wallet.signingKey.address
+    }
+    async createWallet() {
         if (this.privateKey) {
             try {
                 this.wallet = new this.ethers.Wallet(this.privateKey, this.provider)
                 this.privateKey = this.wallet.signingKey.keyPair.privateKey
-              
+              // console.log(this.wallet)
             }
             catch (err) {
                 this.errorFunction(err)
@@ -76,24 +79,20 @@ module.exports = class Wallet {
     }
 
     getData() {
-        this.etherscanProvider.getBalance(this.wallet.address).then((res)=>{
-            res = this.ethers.utils.formatEther(res)
-            console.log(res)
-            return {
+           return {
                 address: this.wallet.signingKey.address,
                 privateKey: this.wallet.signingKey.keyPair.privateKey,
                 publicKey: this.wallet.signingKey.keyPair.compressedPublicKey,
                 provider: this.wallet.provider._network.name,
-                balance:  res
-                
-            }
-        })
-        
-
+             } 
+                                     
     }
-
-    async getBalance() {
-        this.balance = this.ethers.utils.formatEther(await this.etherscanProvider.getBalance(this.wallet.address))
+ 
+    async balance() {
+        let bal = await this.provider.getBalance(this.wallet.address)
+        bal = this.ethers.utils.formatEther(bal)
+        return bal
+        
     }
 
     changeProvider(providerName) {
@@ -103,7 +102,7 @@ module.exports = class Wallet {
             this.providerName = providerName
         }
         else {
-            this.providerName = 'homestead'
+            this.providerName = 'rinkeby'
         }
         try {
             this.provider = this.ethers.getDefaultProvider(this.providerName)

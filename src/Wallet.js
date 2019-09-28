@@ -9,7 +9,7 @@ module.exports = class Wallet {
         if (this.providers.includes(providerName))
             this.providerName = providerName
         else
-            this.providerName = 'homestead'
+            this.providerName = 'rinkeby'
         this.provider = this.ethers.getDefaultProvider(this.providerName)
         this.etherscanProvider = new this.ethers.providers.EtherscanProvider(this.providerName, this.apiToken)
 
@@ -43,6 +43,7 @@ module.exports = class Wallet {
             try {
                 this.wallet = new this.ethers.Wallet(this.privateKey, this.provider)
                 this.privateKey = this.wallet.signingKey.keyPair.privateKey
+              
             }
             catch (err) {
                 this.errorFunction(err)
@@ -53,19 +54,20 @@ module.exports = class Wallet {
             try {
                 this.wallet = this.ethers.Wallet.createRandom()
                 this.privateKey = this.wallet.signingKey.keyPair.privateKey
+                this.createWallet()
             }
             catch (err) {
                 this.errorFunction(err)
             }
 
         }
-         console.log(this.wallet)
     }
 
     createWalletFromSeed(seed) {
         try {
             this.wallet = this.ethers.Wallet.fromMnemonic(seed)
             this.privateKey = this.wallet.signingKey.keyPair.privateKey
+            this.createWallet()
         }
         catch (err) {
             this.errorFunction(err)
@@ -74,18 +76,24 @@ module.exports = class Wallet {
     }
 
     getData() {
-        return {
-            address: this.wallet.signingKey.address,
-            privateKey: this.wallet.signingKey.keyPair.privateKey,
-            publicKey: this.wallet.signingKey.keyPair.compressedPublicKey,
-            //balance: this.balance,
-            //provider: this.wallet.provider._network.name
-        }
+        this.etherscanProvider.getBalance(this.wallet.address).then((res)=>{
+            res = this.ethers.utils.formatEther(res)
+            console.log(res)
+            return {
+                address: this.wallet.signingKey.address,
+                privateKey: this.wallet.signingKey.keyPair.privateKey,
+                publicKey: this.wallet.signingKey.keyPair.compressedPublicKey,
+                provider: this.wallet.provider._network.name,
+                balance:  res
+                
+            }
+        })
+        
 
     }
 
     async getBalance() {
-        return this.ethers.utils.formatEther(await this.etherscanProvider.getBalance(this.wallet.address))
+        this.balance = this.ethers.utils.formatEther(await this.etherscanProvider.getBalance(this.wallet.address))
     }
 
     changeProvider(providerName) {
@@ -103,10 +111,7 @@ module.exports = class Wallet {
             this.createWallet()
         }
         catch (err) {
-           // this.errorFunction(err)
-           err = JSON.stringify(err)
-           console.log(err)
-            throw err
+           this.errorFunction(err)
         }
     }
     }

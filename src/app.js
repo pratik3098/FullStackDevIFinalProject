@@ -2,8 +2,7 @@ const path=require('path')
 const Wallet= require('./Wallet')
 const ethers = require('ethers')
 const axios = require('axios')
-const fs=require('fs')
-const request = require('request')
+const fs = require('fs')
 const express= require('express')
 const bodyParser= require('body-parser');
 const app = express()
@@ -13,29 +12,12 @@ app.set('views',path.join(__dirname,"../views"))
 app.use(express.static("../views"))
 app.use(bodyParser.urlencoded({extended: false}))
 let mywallet
-let mydata = {alert1: 'hidden', data: ''}
-let add = '0x2e3AEa4b4EC043c60bA45E43b40046A3cFbc0d27'
-let price
+//let add = '0x2e3AEa4b4EC043c60bA45E43b40046A3cFbc0d27'
 console.log("result:" +isValidKey('43D57D2EEAC30F7F172042747F79830356AFDFAD43D22BEF5C1C1BA5239C9ED0'))
 
-//
-mywallet =new Wallet('43D57D2EEAC30F7F172042747F79830356AFDFAD43D22BEF5C1C1BA5239C9ED0','rinkeby')
-console.log("Price: "+ renderWalletData())
-/*app.get('',(req,res)=>{
+app.get('',(req,res)=>{
     //res.sendFile("index.html",{root: __dirname})
-    res.render('index',mydata)
-    getEtherPrice()
-    console.log("Price: "+ price)
-    let wall = renderWalletData()
-    
-})
-
-app.get('/mywallet',(req,res)=>{
-    if(mydata==={alert1: 'hidden', data: ''})
-    res.redirect('')
-
-  
-    res.render('wallet',mydata)
+    res.render('index')    
 })
 
 
@@ -52,11 +34,14 @@ app.post('/submit',(req, res)=>{
          mydata={alert1: ' ', data: ''}
          res.redirect('/')
      }
-    let wall =renderWalletData()
-     
-     
-     res.render('wallet', wall)
+    res.redirect('/mywallet')
 
+})
+app.get('/mywallet',(req,res)=>{
+    if(typeof mywallet == "undefined")
+      res.redirect('/')
+    else
+    renderWalletData(res)
 })
 app.post('/changeProvider',(req,res)=>{
     console.log(JSON.stringify(req.body))
@@ -76,22 +61,22 @@ app.get('/alert',(req,res)=>{
 app.listen(8080,()=>{
     console.log("Server is running on port: 8080")
 }) 
-*/
 
-function renderWalletData(){
+function renderWalletData(response){
     let d = mywallet.getData()
-     mywallet.balance().then((res)=>{
+     Promise.all([mywallet.balance(),axios.get('https://api.etherscan.io/api?module=stats&action=ethprice&apikey')]).then((res)=>{
         try{
-        d= {...d, "balance": res}
-        console.log(d)
-      
+        d= {...d, "balance": res[0],"usdPrice": res[1].data.result.ethusd,"btcPrice": res[1].data.result.ethbtc,"usdVal": Number(res[1].data.result.ethusd)*Number(res[0]), "btcVal": Number(res[1].data.result.ethbtc)*Number(res[0])}
+        d=JSON.stringify(d)
+        d=JSON.parse(d)
+        //console.log(d) 
+        response.render("wallet",d)  
        }
        catch(err){
            console.log(JSON.stringify(err))
        }
       
    })
-   return d;
 }
 
 function isValidKey(key){ 
@@ -109,25 +94,4 @@ function isValidKey(key){
     }
     return false
 }
-
-function getEtherPrice(){
-   /* let d
-    axios.get('https://api.etherscan.io/api?module=account&action=balance&address=0x2e3AEa4b4EC043c60bA45E43b40046A3cFbc0d27&tag=latest').then((res)=>{
-       d=res.data.result
-       setTimeout(()=>{setData(add)},1000)})
-       .catch((err)=>{
-        console.log(err)})
-   */
-   request.get('https://api.etherscan.io/api?module=account&action=balance&address=0x2e3AEa4b4EC043c60bA45E43b40046A3cFbc0d27&tag=latest',{json: true},(err,res,body)=>{
-       console.log("Hi:"+body.result)
-       price = body.result
-   })
-   return price
-}
-
-function setData(data){
-   price = data
-   console.log("Price2: "+price)
-}
-
 

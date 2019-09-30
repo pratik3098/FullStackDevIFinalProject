@@ -22,7 +22,6 @@ app.get('',(req,res)=>{
 
 
 app.post('/submit',(req, res)=>{
-    if(typeof mywallet !="undefined"){
      try{
         if(isValidKey(req.body.privateKey))
           mywallet= new Wallet(req.body.privateKey,req.body.provider)
@@ -32,12 +31,9 @@ app.post('/submit',(req, res)=>{
           throw "Invalid key"
      }
      catch(err){ 
-         res.render('index')
+         res.redirect('/')
      }
     res.redirect('/mywallet')
-    }
-    else
-      res.redirect('/')
 
 })
 app.get('/mywallet',(req,res)=>{

@@ -1,5 +1,3 @@
-
-
 var input = document.querySelector(".amount");
 //var address = document.querySelector(".address");
 var button = document.querySelector(".btn");
@@ -52,5 +50,9 @@ function myFunction() {
     popup.hidden =false
     popup.classList.toggle("show");
   }
+  function msgbox(){
+    var alert = document.getElementById("msg1")
+    alert.hidden = false
+   }
 
 

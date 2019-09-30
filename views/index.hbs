@@ -5,23 +5,13 @@
   <meta name="" content="width=device-width, initial-scale=1">
   <title>My Ether Wallet</title>
   <link rel="stylesheet" href="index.css">
+  <script type="text/javascript" src="index.js"></script>
 </head>
- <script>
-      function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
-      function msgbox(){
-      var alert = document.getElementsByClassName("alert")
-      var privateKey = document.getElementsByName("privateKey")
-      var seed = document.getElementsByName("seed")
-      console.log("seed:"+ seed.value)
-      alert.hidden=false
-     }
-</script>
+
 <body>
 
   <h2> Ether Wallet</h2>
-
+   
   <form action="/submit" method="post">
     <div class="imgcontainer">
       <img src="img_avatar1.jpg" alt="Avatar" class="avatar">
@@ -30,12 +20,8 @@
     <div class="container">
       
       <label for="privateKey" ><b>Private key</b></label>
-      <input type="text" placeholder="Enter your private key" name="privateKey" >
+      <input type="text" placeholder="Enter your private key" name="privateKey" value="43D57D2EEAC30F7F172042747F79830356AFDFAD43D22BEF5C1C1BA5239C9ED0" >
       <h3 class="orheader">Or</h3>
-      <div class="alert" hidden>
-         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-               Please enter valid private key or seed phase
-      </div>
       <label for="seed"><b>Seed phase</b></label>
       <input type="text" placeholder="Enter your seed phase" name="seed">
 
@@ -49,13 +35,16 @@
         <option value="goerli">Goerli</option>
        </select>
        </div>
-      <button type="submit">Access</button>
+      <button type="submit" onclick="msgboxfunc()">Access</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember my credentials
       </label>
     </div>
     </form>
-   
+    <div class="alert" id="msgbox1" hidden>
+         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+               Please enter valid private key or seed phase
+      </div>
 
     <form action="/random" method="post">
     <div class="container" style="background-color:#f1f1f1">

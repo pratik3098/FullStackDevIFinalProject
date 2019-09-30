@@ -3,6 +3,7 @@
 The ether wallet provides the Ethereum wallet information provided the either private Key or Seed Phrase
 
 The wallet uses ether.js library 
+GitHub link: https://github.com/pratik3098/FullStackdevIFinalProject
 
 Dependencies: Nodejs
 

@@ -32,12 +32,12 @@ app.post('/submit',(req, res)=>{
           throw "Invalid key"
      }
      catch(err){ 
-         res.render('index',{bool: ' '})
+         res.render('index')
      }
     res.redirect('/mywallet')
     }
     else
-     res.redirect('/')
+      res.redirect('/')
 
 })
 app.get('/mywallet',(req,res)=>{
